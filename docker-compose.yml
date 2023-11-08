@@ -1,0 +1,20 @@
+version: "3"
+services:
+  rabbitmq:
+    environment:
+     - RABBITMQ_ERLANG_COOKIE=secret
+     - RABBITMQ_DEFAULT_USER=guest
+     - RABBITMQ_DEFAULT_PASS=guest
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+    - 5672:5672
+    - 15672:15672
+    volumes:
+     - ./storage:/var/lib/rabbitmq
+    healthcheck:
+      test: rabbitmqctl status
+      interval: 5s
+      retries: 5
+      timeout: 3s

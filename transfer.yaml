@@ -1,0 +1,24 @@
+# Example how to USE
+# EDIT-ME
+---
+servers:
+  source: amqp://admin:<redacted>@200.200.200.200:5672
+  dest: amqp://admin:<redacted>@200.200.200.200:5672
+vhosts:
+  - name: vhost_name_1
+    queues: 
+      - name: queue_name_1
+      - name: queue_name_2
+        exchange_letter: queue_name_2.deadletter
+      - name: queue_name_3
+  - name: vhost_name_2
+    queues: 
+      - name: queue_name_1
+        exchange_letter: ""
+        routing_key: routing_key_1
+      - name: queue_name_2
+        exchange_letter: ""
+        routing_key: routing_key_2
+  - name: vhost_name_3
+    queues: 
+      - name: queue_name_1
